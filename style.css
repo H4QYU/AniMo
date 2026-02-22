@@ -1,0 +1,224 @@
+/* ==========================
+   الخلفية + الجسم
+========================== */
+body {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================
+   الهيدر
+========================== */
+.logo-header {
+  background-color: rgba(30, 20, 20, 0.8);
+  padding: 10px;
+}
+
+.logo-img {
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.main-title {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  font-size: 24px;
+  color: white;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 20px auto;
+}
+
+/* ==========================
+   مربعات الأنمي في الصفحة الرئيسية
+========================== */
+.anime-box {
+  display: inline-block;
+  margin: 20px;
+  vertical-align: top;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.anime-box:hover {
+  transform: scale(1.05);
+}
+
+.anime-box img {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(196, 15, 15);
+}
+
+.anime-box h2 {
+  color: white;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* ==========================
+   قائمة الحلقات
+========================== */
+.episodes-list ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px; /* مسافة بين الخانات */
+}
+
+.episodes-list li {
+  margin: 0;
+}
+
+.episodes-list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  background: linear-gradient(145deg, #ff4d4d, #ff0000); /* تدرج أحمر */
+  border-radius: 15px; /* حواف مستديرة */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.episodes-list a:hover {
+  transform: scale(1.15);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
+  background: linear-gradient(145deg, #ff6666, #ff1a1a);
+  color: white;
+}
+
+/* ==========================
+   الفيديو
+========================== */
+.video-box,
+.video-container,
+#animeVideo,
+#animePlayer {
+  width: 80%;
+  max-width: 800px;
+  height: 500px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+/* الهواتف */
+@media only screen and (max-width: 768px) {
+
+  /* مربعات الأنمي في الصفحة الرئيسية */
+  .anime-box {
+    display: block;
+    margin: 20px auto;
+  }
+
+  .anime-box img {
+    width: 180px;
+  }
+
+  .anime-box h2 {
+    font-size: 20px;
+  }
+
+  /* الحلقات */
+  .episodes-list a {
+    width: 90px;
+    height: 70px;
+    font-size: 20px;
+  }
+
+  /* الهيدر والعنوان */
+  .logo-img {
+    width: 140px;
+  }
+
+  .main-title {
+    font-size: 22px;
+    padding: 18px;
+  }
+
+  /* الفيديو */
+  #animeVideo,
+  #animePlayer,
+  .video-box,
+  .video-container {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+/* التابلت */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+  .anime-box img {
+    width: 200px;
+  }
+
+  .anime-box h2 {
+    font-size: 22px;
+  }
+
+  .episodes-list a {
+    width: 80px;
+    height: 80px;
+    font-size: 19px;
+  }
+
+  .video-box,
+  .video-container,
+  #animeVideo,
+  #animePlayer {
+    width: 90%;
+    height: 350px;
+  }
+}
+
+/* الكمبيوتر */
+@media only screen and (min-width: 1025px) {
+
+  .anime-box img {
+    width: 220px;
+  }
+
+  .anime-box h2 {
+    font-size: 20px;
+  }
+
+  .episodes-list a {
+    width: 70px;
+    height: 70px;
+    font-size: 18px;
+  }
+
+  .video-box,
+  .video-container,
+  #animeVideo,
+  #animePlayer {
+    width: 80%;
+    height: 500px;
+  }
+}

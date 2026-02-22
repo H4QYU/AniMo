@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مشغل الحلقة</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="logo-header">
+    <a href="index.html">
+      <img src="images/animo.jpg" alt="شعار Animo" class="logo-img">
+    </a>
+  </header>
+
+  <h1 id="animeTitle">تحميل الحلقة...</h1>
+
+  <a id="backBtn" class="back-btn" href="#">⬅ العودة للحلقات</a>
+
+  <iframe id="animePlayer" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+
+  <script src="animeData.js"></script> <!-- تم تصحيح المسار -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const anime = params.get("anime");
+    const epIndex = params.get("ep");
+    const title = document.getElementById("animeTitle");
+    const player = document.getElementById("animePlayer");
+    const backBtn = document.getElementById("backBtn");
+
+    if (animeData[anime] && animeData[anime][epIndex]) {
+      const epObj = animeData[anime][epIndex];
+      player.src = epObj.url; // يعرض الحلقة داخل iframe
+      title.textContent = `${anime} - ${epObj.episode}`;
+      backBtn.href = `anime.html?anime=${anime}`;
+    } else {
+      title.textContent = "الحلقة أو الأنمي غير موجود";
+      player.style.display = "none";
+      backBtn.style.display = "none";
+    }
+  </script>
+</body>
+</html>

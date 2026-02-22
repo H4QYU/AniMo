@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأنمي - الحلقات</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="play-page">
+
+  <header class="logo-header">
+    <a href="index.html">
+      <img src="images/animo.jpg" alt="شعار Animo" class="logo-img">
+    </a>
+  </header>
+
+  <h1>اختر الحلقة</h1>
+
+  <div class="episodes-list">
+    <ul id="episodes"></ul>
+  </div>
+
+  <script src="animeData.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const anime = params.get("anime");
+    const episodesList = document.getElementById("episodes");
+
+    if (animeData[anime]) {
+      animeData[anime].forEach((epObj, index) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `player.html?anime=${anime}&ep=${index}`;
+        a.textContent = epObj.episode;
+        li.appendChild(a);
+        episodesList.appendChild(li);
+      });
+    } else {
+      episodesList.innerHTML = "<li>الأنمي غير موجود</li>";
+    }
+  </script>
+
+</body>
+</html>
