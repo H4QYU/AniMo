@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header class="logo-header">
     <a href="index.html">
       <img src="images/animo.jpg" alt="شعار Animo" class="logo-img">
@@ -18,8 +19,18 @@
 
   <iframe id="animePlayer" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
 
-  <script src="animeData.js"></script> <!-- تم تصحيح المسار -->
+  <script src="links.js"></script>
   <script>
+    // إنشاء خريطة الأنمي والحلقات مباشرة
+    const animeMap = {};
+    links.forEach(url => {
+      const match = url.match(/video-title=([^&]+)/);
+      if (!match) return;
+      const [animeName, epNum] = match[1].split('-');
+      if (!animeMap[animeName]) animeMap[animeName] = [];
+      animeMap[animeName].push({ episode: epNum, url });
+    });
+
     const params = new URLSearchParams(window.location.search);
     const anime = params.get("anime");
     const epIndex = params.get("ep");
@@ -27,10 +38,10 @@
     const player = document.getElementById("animePlayer");
     const backBtn = document.getElementById("backBtn");
 
-    if (animeData[anime] && animeData[anime][epIndex]) {
-      const epObj = animeData[anime][epIndex];
-      player.src = epObj.url; // يعرض الحلقة داخل iframe
-      title.textContent = `${anime} - ${epObj.episode}`;
+    if (animeMap[anime] && animeMap[anime][epIndex]) {
+      const epObj = animeMap[anime][epIndex];
+      player.src = epObj.url;
+      title.textContent = `${anime} - الحلقة ${epObj.episode}`;
       backBtn.href = `anime.html?anime=${anime}`;
     } else {
       title.textContent = "الحلقة أو الأنمي غير موجود";
@@ -38,5 +49,6 @@
       backBtn.style.display = "none";
     }
   </script>
+
 </body>
 </html>

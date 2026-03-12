@@ -14,24 +14,58 @@
     </a>
   </header>
 
-  <h1>اختر الحلقة</h1>
+  <h1 id="animeTitle">اختر الحلقة</h1>
 
   <div class="episodes-list">
     <ul id="episodes"></ul>
   </div>
 
-  <script src="animeData.js"></script>
+  <script src="links.js"></script>
   <script>
+    // دالة استخراج اسم الأنمي ورقم الحلقة بعد آخر '=' أو '+'
+    const parseLink = (url) => {
+      const match = url.match(/video-title=([^&]+)/);
+      if (!match) return null;
+
+      let full = match[1];
+      // أخذ كل شيء بعد آخر = أو +
+      const lastSignIndex = Math.max(full.lastIndexOf('='), full.lastIndexOf('+'));
+      if (lastSignIndex !== -1) {
+        full = full.substring(lastSignIndex + 1);
+      }
+
+      // تقسيم الاسم ورقم الحلقة عند آخر '-'
+      const lastDash = full.lastIndexOf('-');
+      if (lastDash === -1) return null;
+      const animeName = full.substring(0, lastDash);
+      const epNum = full.substring(lastDash + 1);
+      return { animeName, epNum, url };
+    };
+
+    // إنشاء خريطة الأنمي والحلقات
+    const animeMap = {};
+    links.forEach(url => {
+      const data = parseLink(url);
+      if (!data) return;
+      const { animeName, epNum } = data;
+      if (!animeMap[animeName]) animeMap[animeName] = [];
+      animeMap[animeName].push({ episode: epNum, url: data.url });
+    });
+
+    // قراءة اسم الأنمي من الرابط
     const params = new URLSearchParams(window.location.search);
-    const anime = params.get("anime");
+    const anime = params.get("anime") || "";
+
     const episodesList = document.getElementById("episodes");
 
-    if (animeData[anime]) {
-      animeData[anime].forEach((epObj, index) => {
+    if (animeMap[anime]) {
+      // ترتيب الحلقات حسب الرقم
+      animeMap[anime].sort((a,b) => Number(a.episode) - Number(b.episode));
+      animeMap[anime].forEach((epObj, index) => {
         const li = document.createElement("li");
         const a = document.createElement("a");
         a.href = `player.html?anime=${anime}&ep=${index}`;
-        a.textContent = epObj.episode;
+        a.textContent = `الحلقة ${epObj.episode}`;
         li.appendChild(a);
         episodesList.appendChild(li);
       });

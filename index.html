@@ -3,109 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>منصة Animo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* ==========================
-       حاوية البوكسات
-    ========================== */
-    .anime-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px; /* تقليل المسافة بين البوكسات */
-      margin-top: 30px;
-    }
-
-    .anime-box {
-      background: linear-gradient(145deg, rgba(50,0,0,0.8), rgba(0,0,0,0.6));
-      border-radius: 18px;
-      padding: 10px;
-      text-align: center;
-      width: 200px; /* الحجم الافتراضي للكمبيوتر */
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      cursor: pointer;
-      overflow: hidden;
-    }
-
-    .anime-box img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(255,0,0,0.6);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .anime-box h2 {
-      margin-top: 10px;
-      font-size: 18px;
-      color: #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Hover effect احترافي */
-    .anime-box:hover {
-      transform: translateY(-8px) scale(1.07);
-      box-shadow: 0 15px 25px rgba(255, 0, 0, 0.7);
-    }
-
-    .anime-box:hover img {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 50, 50, 0.9);
-    }
-
-    /* ==========================
-       Responsive
-    ========================== */
-
-    /* الهواتف */
-    @media only screen and (max-width: 768px) {
-      .anime-box {
-        width: 140px;
-        padding: 8px;
-      }
-
-      .anime-box h2 {
-        font-size: 14px;
-      }
-    }
-
-    /* التابلت */
-    @media only screen and (min-width: 769px) and (max-width: 1024px) {
-      .anime-box {
-        width: 160px;
-      }
-
-      .anime-box h2 {
-        font-size: 16px;
-      }
-    }
-
-  </style>
 </head>
 <body>
-
-  <!-- شعار الموقع -->
   <header class="logo-header">
     <img src="images/animo.jpg" alt="شعار Animo" class="logo-img">
   </header>
 
   <h1 class="main-title">منصة Animo لمشاهدة الأنمي</h1>
 
-  <!-- حاوية البوكسات -->
   <div class="anime-container">
-    <div class="anime-box">
-      <a href="anime.html?anime=Boroto">
-        <img src="images/Boroto.jpg" alt="Boroto">
-        <h2>Boroto</h2>
-      </a>
-    </div>
-
+  
     <div class="anime-box">
       <a href="anime.html?anime=InuYasha">
         <img src="images/InuYasha.jpg" alt="InuYasha">
         <h2>InuYasha</h2>
+      </a>
+    </div>
+
+    <div class="anime-box">
+      <a href="anime.html?anime=Boroto">
+        <img src="images/Boroto.jpg" alt="Boroto">
+        <h2>Boroto</h2>
       </a>
     </div>
 
@@ -116,8 +35,26 @@
       </a>
     </div>
 
-    <!-- يمكن إضافة المزيد بنفس الطريقة -->
+    <div class="anime-box">
+      <a href="anime.html?anime=DragonBall">
+        <img src="images/DragonBall.jpg" alt="DragonBall">
+        <h2>DragonBall</h2>
+      </a>
+    </div>
   </div>
 
+  <script src="links.js"></script>
+  <script>
+    
+    const animeMap = {};
+    links.forEach(url => {
+      const match = url.match(/video-title=([^&]+)/);
+      if (!match) return;
+      const [animeName, epNum] = match[1].split('-');
+      if (!animeMap[animeName]) animeMap[animeName] = [];
+      animeMap[animeName].push({ episode: epNum, url });
+    });
+    window.animeMap = animeMap;
+  </script>
 </body>
 </html>
