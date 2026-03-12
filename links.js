@@ -6,5 +6,7 @@ const links = [
   "https://player.mux.com/7RE1yQ4mD00D6wt8YGIwmXYedcuPP2wmWGV7FAox5O3k?metadata-video-title=InuYasha-5",
   "https://player.mux.com/ZkgHUrA1mBoE5YLX004pabyPCY1Z1vGcgRUkRhIBa00y8?metadata-video-title=InuYasha-6",
   "https://player.mux.com/8mjK1Re6O02cF5K68J00yh2Z4xp78BCNiANustq2i3Mtk?metadata-video-title=InuYasha-7",
-  "https://player.mux.com/wtXQ01vDj1lHFnEu02gWH400jxWLA98hH021288kxH00Zvgo?metadata-video-title=InuYasha-8"
+  "https://player.mux.com/wtXQ01vDj1lHFnEu02gWH400jxWLA98hH021288kxH00Zvgo?metadata-video-title=InuYasha-8",
+  "https://player.mux.com/qaffF00hpPoMF1ZEx9cWeZsDx5WSW7e02QG2xgnttp2qQ?metadata-video-title=InuYasha-9",
+  "https://player.mux.com/hXTmsSGzKq01MKuSNXJD02HSAVzWGtc1G74OHQCfhS63k?metadata-video-title=InuYasha-10"
 ];
